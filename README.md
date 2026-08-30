@@ -1,7 +1,7 @@
 # Central and Eastern Europe agriculture climate analysis
 
-This repository contains the data and notebook behind a Reuters analysis of
-June and July temperatures in Hungary, Romania and Poland.
+This repository contains the notebook behind a Reuters analysis of June and
+July temperatures in Hungary, Romania and Poland.
 
 ## Finding
 
@@ -11,10 +11,12 @@ normal in Romania**.
 
 ## Data and method
 
-`data/annual-june-july-tmax-anomalies.csv` contains one value per country and
-year. Each value is the average daily maximum temperature from June 1 through
-July 31, less that country's average over the same 61 calendar days in
-1961–1990. June therefore contributes 30 days and July 31 days.
+The notebook downloads daily country averages from the private Reuters Climate
+Monitor dataset at
+`analysis/daily-country-averages/era5.parquet`. It averages `t2m_max` from June
+1 through July 31 for each country and year, then subtracts that country's
+1961–1990 average for the same 61 calendar days. June therefore contributes 30
+days and July 31 days.
 
 The underlying data are ERA5 reanalysis estimates produced by the Reuters
 Climate Monitor. They describe area-weighted country averages, not weather
@@ -27,17 +29,17 @@ Install [uv](https://docs.astral.sh/uv/), then run:
 
 ```sh
 uv sync
+export S3_BUCKET_NAME="your-authorized-bucket"
 uv run jupyter lab analysis.ipynb
 ```
 
-The notebook reads the committed CSV, recreates the decade averages and shows
-the annual series. It needs no credentials or external download.
+The source data are private. Running the notebook requires authorized AWS
+access through standard AWS credentials and the `S3_BUCKET_NAME` environment
+variable.
 
 ## Files
 
 - `analysis.ipynb` — analysis and chart.
-- `data/annual-june-july-tmax-anomalies.csv` — annual June–July anomalies,
-  1961–2026.
 - `pyproject.toml` and `uv.lock` — pinned Python environment.
 
 ## License
