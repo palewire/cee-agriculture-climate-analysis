@@ -1,4 +1,0 @@
-rules:
-  # Keep version-tagged Actions references until the template adopts SHA pinning.
-  unpinned-uses:
-    disable: true

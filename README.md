@@ -1,51 +1,45 @@
-# Python Open Source Template
+# Central and Eastern Europe agriculture climate analysis
 
-A starter repository for Python packages with `uv`, Ruff, ty, pytest, Sphinx,
-GitHub Actions, and agent-friendly project guidance.
+This repository contains the data and notebook behind a Reuters analysis of
+June and July temperatures in Hungary, Romania and Poland.
 
-## Start a Project
+## Finding
 
-1. Use this template to create a repository.
-2. Complete [TEMPLATE_SETUP.md](TEMPLATE_SETUP.md) before the first release.
-3. Bootstrap the checkout and install development dependencies:
+From 2017 through 2026, average daily highs in June and July were **3.1°C
+(5.6°F) above the 1961–1990 normal in Hungary** and **3.0°C (5.4°F) above
+normal in Romania**.
 
-   ```sh
-   make bootstrap
-   ```
+## Data and method
 
-The template intentionally does not define a package, API, or application.
-Choose those when adapting it.
+`data/annual-june-july-tmax-anomalies.csv` contains one value per country and
+year. Each value is the average daily maximum temperature from June 1 through
+July 31, less that country's average over the same 61 calendar days in
+1961–1990. June therefore contributes 30 days and July 31 days.
 
-`make bootstrap` is safe to run again. In a linked Git worktree, it links the
-primary checkout's ignored `.env` when one exists, without replacing any local
-file. It also creates an ignored `.env.worktree` containing a stable
-`WORKTREE_ID` for namespacing ports, databases, caches, or containers. Existing
-local settings in that file are preserved.
+The underlying data are ERA5 reanalysis estimates produced by the Reuters
+Climate Monitor. They describe area-weighted country averages, not weather
+station observations. This analysis does not measure rainfall, soil moisture,
+crop yields, planted area or the causes of agricultural change.
 
-Applications must opt in to loading dotenv files. When supported, load the
-shared `.env` first and `.env.worktree` second so worktree-local values take
-precedence. The bootstrap does not assume a web framework or dotenv library.
+## Reproduce
 
-## Development
+Install [uv](https://docs.astral.sh/uv/), then run:
 
 ```sh
-make check   # Fast lint, format, and type checks
-make verify  # Checks, tests, package build, and strict documentation build
+uv sync
+uv run jupyter lab analysis.ipynb
 ```
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contributor guidance and
-[AGENTS.md](AGENTS.md) for agent instructions.
+The notebook reads the committed CSV, recreates the decade averages and shows
+the annual series. It needs no credentials or external download.
 
-## Dev Container
+## Files
 
-Open the repository in a Dev Container to use the pinned Python and uv
-environment. It installs all dependency groups and the configured Git hooks on
-creation, while retaining the uv download cache between rebuilds.
+- `analysis.ipynb` — analysis and chart.
+- `data/annual-june-july-tmax-anomalies.csv` — annual June–July anomalies,
+  1961–2026.
+- `pyproject.toml` and `uv.lock` — pinned Python environment.
 
-## Documentation and Releases
+## License
 
-Documentation lives in `docs/` and is built with Sphinx using the Palewire
-theme. The documentation workflow builds every push and pull request.
-
-Follow [RELEASING.md](RELEASING.md) for the release checklist and
-[CHANGELOG.md](CHANGELOG.md) for user-facing changes.
+MIT. See [LICENSE](LICENSE).
