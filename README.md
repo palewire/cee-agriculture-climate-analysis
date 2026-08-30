@@ -35,12 +35,13 @@ uv run jupyter lab analysis.ipynb
 
 The source data are private. Running the notebook requires authorized AWS
 access through standard AWS credentials and the `S3_BUCKET_NAME` environment
-variable. The notebook writes its annual values to a local `pivot.csv`, which
-is ignored by Git.
+variable. The notebook writes its annual values to `pivot.csv`, which is
+included in this repository as a transparent analysis output.
 
 ## Files
 
 - `analysis.ipynb` — analysis and chart.
+- `pivot.csv` — annual June–July anomalies calculated by the notebook.
 - `pyproject.toml` and `uv.lock` — pinned Python environment.
 
 ## License

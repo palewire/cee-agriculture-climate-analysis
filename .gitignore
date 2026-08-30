@@ -6,4 +6,3 @@ __pycache__/
 
 # Private source data and local analysis outputs
 data/
-pivot.csv
