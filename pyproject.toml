@@ -8,6 +8,7 @@ dependencies = [
     "jupyterlab>=4.0",
     "pandas>=2.0",
     "pyarrow>=20.0",
+    "python-dotenv>=1.2.3",
 ]
 description = "Notebook analysis of June-July temperature anomalies in Central Europe"
 license = "MIT"

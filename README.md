@@ -35,7 +35,8 @@ uv run jupyter lab analysis.ipynb
 
 The source data are private. Running the notebook requires authorized AWS
 access through standard AWS credentials and the `S3_BUCKET_NAME` environment
-variable.
+variable. The notebook writes its annual values to a local `pivot.csv`, which
+is ignored by Git.
 
 ## Files
 
