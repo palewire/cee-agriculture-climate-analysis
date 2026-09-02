@@ -1,0 +1,9 @@
+# Local Python and notebook files
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+
+# Private source data and local analysis outputs
+data/
+.env
